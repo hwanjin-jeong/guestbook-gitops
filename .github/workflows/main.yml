@@ -51,20 +51,22 @@ jobs:
         # Build and tag the image
         docker build \
           -t $CONTAINER_IMAGE \
-          -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$CONTAINER_IMAGE ./php-redis
+          -t $AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-2.amazonaws.com/$CONTAINER_IMAGE ./php-redis
  
     # Set image tag in kustomization
 
     - name: Set image tag
       run: |
           cd deploy
-          kustomize edit set image $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$CONTAINER_IMAGE
+          kustomize edit set image $AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-2.amazonaws.com/$CONTAINER_IMAGE
           cat kustomization.yaml
+          
     - name: Commit kustomization
       run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git commit -a -m "$CONTAINER_IMAGE"
+          
     - name: Push changes to master
       uses: ad-m/github-push-action@master
       with:
@@ -79,4 +81,4 @@ jobs:
       if: github.ref == 'refs/heads/master'
       run: |
         # Push image to AWS ECR
-        docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$CONTAINER_IMAGE
+        docker push $AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-2.amazonaws.com/$CONTAINER_IMAGE
