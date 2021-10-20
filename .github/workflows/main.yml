@@ -52,10 +52,8 @@ jobs:
         docker build \
           -t $CONTAINER_IMAGE \
           -t $AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-2.amazonaws.com/$CONTAINER_IMAGE \
-          --build-arg GIT_SHA=${GITHUB_SHA}
+          --build-arg GIT_SHA=${GITHUB_SHA} \
           ./php-redis
- 
-    # Set image tag in kustomization
 
     - name: Set image tag
       run: |
@@ -85,6 +83,12 @@ jobs:
           type=sha,format=long
     # Add additional steps here like scanning of image
 
+    - name: Run a one-line script
+      run: ${{ steps.meta.outputs.tags }}
+
+    - name: Run a one-line script
+      run: ${{ steps.meta.outputs.tags[0] }}
+      
     # Only push to registry on master
     - name: Push
       if: github.ref == 'refs/heads/master'
