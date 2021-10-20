@@ -14,6 +14,9 @@
 
 FROM php:5-apache
 
+ARG GIT_SHA
+ENV GIT_SHA=${GIT_SHA}
+
 RUN pear channel-discover pear.nrk.io
 RUN pear install nrk/Predis
 
