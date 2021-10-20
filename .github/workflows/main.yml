@@ -73,7 +73,14 @@ jobs:
           github_token: ${{ secrets._GITHUB_TOKEN }}
           branch: master
           force: true       
-    
+
+    - name: Docker meta
+      id: meta
+      uses: docker/metadata-action@v3
+      with:
+        images: $AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-2.amazonaws.com/guestbook
+        type: |
+          type=sha,format=long
     # Add additional steps here like scanning of image
 
     # Only push to registry on master
