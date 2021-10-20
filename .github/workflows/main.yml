@@ -79,8 +79,9 @@ jobs:
       uses: docker/metadata-action@v3
       with:
         images: $AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-2.amazonaws.com/guestbook
-        type: |
+        tags: |
           type=sha,format=long
+          type=sha
     # Add additional steps here like scanning of image
 
     - name: Run a one-line script
