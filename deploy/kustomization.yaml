@@ -12,7 +12,7 @@ namespace: frontend
 
 images:
 - name: 293616849799.dkr.ecr.ap-northeast-2.amazonaws.com/guestbook
-  newTag: 823b818f1055fd77f2d47c4ed49dcc387aa600b5
+  newTag: 094f0b5b7c90b7bc9c0c231f9857b11b4ecd41c0
 - name: 457472006214.dkr.ecr.us-west-1.amazonaws.com/guestbook
   newTag: d6cbdc0df33ef5f5dce803931e4d89031865223b
 - name: frontend
