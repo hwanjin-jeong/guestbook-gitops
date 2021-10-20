@@ -84,8 +84,8 @@ jobs:
           type=sha
     # Add additional steps here like scanning of image
 
-    - name: Run a one-line script
-      run: echo ${{ steps.meta.outputs.tags }}
+    # - name: Run a one-line script
+    #   run: echo ${{ steps.meta.outputs.tags }}
 
     - name: Run a one-line script
       run: echo ${{ steps.meta.outputs.tags[0] }}
