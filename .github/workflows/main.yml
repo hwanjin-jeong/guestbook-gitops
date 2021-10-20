@@ -84,10 +84,10 @@ jobs:
     # Add additional steps here like scanning of image
 
     - name: Run a one-line script
-      run: ${{ steps.meta.outputs.tags }}
+      run: echo ${{ steps.meta.outputs.tags }}
 
     - name: Run a one-line script
-      run: ${{ steps.meta.outputs.tags[0] }}
+      run: echo ${{ steps.meta.outputs.tags[0] }}
       
     # Only push to registry on master
     - name: Push
