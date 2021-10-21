@@ -23,8 +23,8 @@ env:
   CONTAINER_IMAGE: guestbook:${{ github.sha }}
 
 jobs:
-  build-and-push:
-    name: Build and deploy
+  flux-status-change:
+    name: flux status change
     runs-on: ubuntu-latest
 
     steps:
