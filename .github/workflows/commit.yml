@@ -36,7 +36,8 @@ jobs:
     - name: Set image tag
       run: |
           echo ${GITHUB_SHA} > ${GITHUB_SHA}
-          
+          git add ${GITHUB_SHA}
+
     - name: Commit kustomization
       run: |
           git config --local user.email "action@github.com"
