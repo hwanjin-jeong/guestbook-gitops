@@ -27,11 +27,6 @@ jobs:
     name: Build and deploy
     runs-on: ubuntu-latest
 
-    # permissions:
-    #   issues: write
-    #   pull-requests: write
-    #   repository-projects: write
-
     steps:
     - name: Checkout
       uses: actions/checkout@master
@@ -43,14 +38,14 @@ jobs:
 
     - name: Set image tag
       run: |
-          echo ${GITHUB_SHA} > ${GITHUB_SHA}
-          git add ${GITHUB_SHA}
+          echo ${GITHUB_SHA} > $GITHUB_SHA
+          git add $GITHUB_SHA
 
     - name: Commit kustomization
       run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git commit -a -m {$GITHUB_SHA}
+          git commit -a -m $GITHUB_SHA
 
     - name: Push changes to master
       uses: ad-m/github-push-action@master
