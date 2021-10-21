@@ -27,10 +27,10 @@ jobs:
     name: Build and deploy
     runs-on: ubuntu-latest
 
-    permissions:
-      issues: write
-      pull-requests: write
-      repository-projects: write
+    # permissions:
+    #   issues: write
+    #   pull-requests: write
+    #   repository-projects: write
 
     steps:
     - name: Checkout
