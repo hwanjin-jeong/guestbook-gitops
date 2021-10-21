@@ -24,11 +24,15 @@ env:
 
 jobs:
   build-and-push:
-    permissions: read-all|write-all
     name: Build and deploy
     runs-on: ubuntu-latest
-    steps:
 
+    permissions:
+      issues: write
+      pull-requests: write
+      repository-projects: write
+
+    steps:
     - name: Checkout
       uses: actions/checkout@master
       with:
