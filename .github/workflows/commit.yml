@@ -23,6 +23,7 @@ env:
   CONTAINER_IMAGE: guestbook:${{ github.sha }}
 
 jobs:
+  permission: read-all | write-all
   build-and-push:
     name: Build and deploy
     runs-on: ubuntu-latest
