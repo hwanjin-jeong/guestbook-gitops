@@ -36,6 +36,9 @@ jobs:
     - name: Checkout
       uses: actions/checkout@master
       with:
+        persist-credentials: false
+        fetch-depth: 0
+        token: ${{ secrets._GITHUB_TOKEN }}        
         repository: hwanjin-jeong/github-action-example
 
     - name: Set image tag
@@ -56,3 +59,4 @@ jobs:
         github_token: ${{ secrets._GITHUB_TOKEN }}
         branch: master
         force: true
+
