@@ -33,6 +33,7 @@ jobs:
       with:
         persist-credentials: false
         fetch-depth: 0
+        ref: my-branch        
         token: ${{ secrets._GITHUB_TOKEN }}        
         repository: hwanjin-jeong/github-action-example
 
