@@ -18,7 +18,7 @@ env:
   CONTAINER_IMAGE: guestbook:${{ github.sha }}
 
   REMOTE_REPOSITORY_TOKEN: ${{ secrets._GITHUB_TOKEN }}        
-  REMOTE_REPOSITORY: hwanjin-jeong/github-action-example
+  REMOTE_REPOSITORY: ${{ 'hwanjin-jeong/github-action-example' }}
   
 jobs:
   on-success:
@@ -31,8 +31,8 @@ jobs:
       with:
         persist-credentials: false
         fetch-depth: 0
-        token: ${{REMOTE_REPOSITORY_TOKEN}}
-        repository: ${{REMOTE_REPOSITORY}}
+        token: $REMOTE_REPOSITORY_TOKEN
+        repository: $REMOTE_REPOSITORY
         ref: master
 
     - name: Set image tag
@@ -50,8 +50,8 @@ jobs:
     - name: Push changes to master
       uses: ad-m/github-push-action@master
       with:
-        github_token: ${{REMOTE_REPOSITORY_TOKEN}}
-        repository: ${{REMOTE_REPOSITORY}}
+        github_token: $REMOTE_REPOSITORY_TOKEN
+        repository: $REMOTE_REPOSITORY
         branch: master
         force: true
 
