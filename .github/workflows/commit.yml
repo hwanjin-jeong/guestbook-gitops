@@ -37,16 +37,16 @@ jobs:
         token: ${{ secrets._GITHUB_TOKEN }}        
         repository: hwanjin-jeong/github-action-example
 
-    - name: Set image tag
-      run: |
-          echo ${GITHUB_SHA} > $GITHUB_SHA
-          git add $GITHUB_SHA
+    # - name: Set image tag
+    #   run: |
+    #       echo ${GITHUB_SHA} > $GITHUB_SHA
+    #       git add $GITHUB_SHA
 
-    - name: Commit kustomization
-      run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git commit -a -m $GITHUB_SHA
+    # - name: Commit kustomization
+    #   run: |
+    #       git config --local user.email "action@github.com"
+    #       git config --local user.name "GitHub Action"
+    #       git commit -a -m $GITHUB_SHA
 
     - name: Push changes to master
       uses: ad-m/github-push-action@master
