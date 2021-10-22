@@ -1,0 +1,57 @@
+# build.yml
+
+name: modify manifests
+
+on:
+  workflow_run:
+    workflows: ["commit"]
+    types: 
+      - completed
+
+# https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html
+env:
+  AWS_DEFAULT_REGION: ap-northeast-2
+  AWS_DEFAULT_OUTPUT: json
+  AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  CONTAINER_IMAGE: guestbook:${{ github.sha }}
+
+  REMOTE_REPOSITORY_TOKEN: ${{ secrets._GITHUB_TOKEN }}        
+  REMOTE_REPOSITORY: hwanjin-jeong/github-action-example
+  
+jobs:
+  on-success:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}    
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+      with:
+        persist-credentials: false
+        fetch-depth: 0
+        token: ${REMOTE_REPOSITORY_TOKEN}
+        repository: ${REMOTE_REPOSITORY}
+        ref: master
+
+    - name: Set image tag
+      run: |
+          cd deploy
+          kustomize edit set image guestbook:sha-${GITHUB_SHA}
+          cat kustomization.yaml
+
+    - name: Commit kustomization
+      run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -a -m $GITHUB_SHA
+
+    - name: Push changes to master
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${REMOTE_REPOSITORY_TOKEN}
+        repository: ${REMOTE_REPOSITORY}
+        branch: master
+        force: true
+
