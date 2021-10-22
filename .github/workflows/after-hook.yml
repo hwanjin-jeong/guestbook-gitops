@@ -31,7 +31,7 @@ jobs:
       with:
         persist-credentials: false
         fetch-depth: 0
-        token: $REMOTE_REPOSITORY_TOKEN
+        token: ${{ secrets._GITHUB_TOKEN }}
         repository: hwanjin-jeong/github-action-example
         ref: master
 
@@ -50,7 +50,7 @@ jobs:
     - name: Push changes to master
       uses: ad-m/github-push-action@master
       with:
-        github_token: $REMOTE_REPOSITORY_TOKEN
+        github_token: ${{ secrets._GITHUB_TOKEN }}
         repository: hwanjin-jeong/github-action-example
         branch: master
         force: true
