@@ -32,7 +32,7 @@ jobs:
         persist-credentials: false
         fetch-depth: 0
         token: $REMOTE_REPOSITORY_TOKEN
-        repository: $REMOTE_REPOSITORY
+        repository: hwanjin-jeong/github-action-example
         ref: master
 
     - name: Set image tag
@@ -51,7 +51,7 @@ jobs:
       uses: ad-m/github-push-action@master
       with:
         github_token: $REMOTE_REPOSITORY_TOKEN
-        repository: $REMOTE_REPOSITORY
+        repository: hwanjin-jeong/github-action-example
         branch: master
         force: true
 
